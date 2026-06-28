@@ -20,7 +20,8 @@ async function request(path, options = {}) {
     return null;
   }
 
-  const data = await response.json();
+  const responseText = await response.text();
+  const data = responseText ? JSON.parse(responseText) : {};
 
   if (!response.ok) {
     throw new Error(data.message || "Request failed");
