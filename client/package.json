@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
+    "vercel-build": "npm install --include=optional && vite build",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint ."
@@ -25,6 +26,6 @@
     "globals": "^15.9.0"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   }
 }
