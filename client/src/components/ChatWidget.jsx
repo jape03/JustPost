@@ -28,8 +28,9 @@ export function ChatWidget({ currentUser, users, chatTarget, onChatTargetConsume
   const chatUsers = useMemo(
     () => {
       const chatUsersById = new Map();
+      const safeConversationUsers = Array.isArray(conversationUsers) ? conversationUsers : [];
 
-      conversationUsers.forEach((user) => {
+      safeConversationUsers.forEach((user) => {
         chatUsersById.set(getUserId(user), user);
       });
 

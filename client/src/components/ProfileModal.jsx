@@ -20,10 +20,12 @@ export function ProfileModal({
 
   const profileId = getUserId(profile);
   const currentUserId = getUserId(currentUser);
+  const safeUsers = Array.isArray(users) ? users : [];
+  const safePosts = Array.isArray(posts) ? posts : [];
   const followingIds = (profile.following || []).map(String);
-  const followers = users.filter((user) => (user.following || []).map(String).includes(String(profileId)));
-  const following = users.filter((user) => followingIds.includes(String(getUserId(user))));
-  const profilePosts = posts.filter(
+  const followers = safeUsers.filter((user) => (user.following || []).map(String).includes(String(profileId)));
+  const following = safeUsers.filter((user) => followingIds.includes(String(getUserId(user))));
+  const profilePosts = safePosts.filter(
     (post) =>
       String(post.author?._id) === String(profileId) ||
       post.reposts?.some((repostUser) => String(repostUser.id || repostUser._id) === String(profileId))

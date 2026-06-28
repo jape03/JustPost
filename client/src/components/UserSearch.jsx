@@ -6,12 +6,13 @@ export function UserSearch({ currentUser, users, onViewProfile }) {
 
   const results = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
+    const safeUsers = Array.isArray(users) ? users : [];
 
     if (!normalizedQuery) {
       return [];
     }
 
-    return users
+    return safeUsers
       .filter((user) => user.id !== currentUser?.id)
       .filter((user) => {
         const username = user.username || user.email.split("@")[0];

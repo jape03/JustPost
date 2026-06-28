@@ -27,12 +27,12 @@ export function App() {
 
   async function loadPosts() {
     const data = await api.listPosts();
-    setPosts(data.posts);
+    setPosts(Array.isArray(data.posts) ? data.posts : []);
   }
 
   async function loadUsers() {
     const data = await api.listUsers();
-    setUsers(data.users);
+    setUsers(Array.isArray(data.users) ? data.users : []);
   }
 
   useEffect(() => {
@@ -180,7 +180,7 @@ export function App() {
     try {
       const data = await api.toggleFollow(id);
       setUser(data.user);
-      setUsers(data.users);
+      setUsers(Array.isArray(data.users) ? data.users : []);
       setSelectedProfile((currentProfile) => {
         const currentProfileId = currentProfile?.id || currentProfile?._id;
         return currentProfileId === id ? { ...currentProfile, ...data.profile } : currentProfile;
