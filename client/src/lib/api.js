@@ -21,10 +21,18 @@ async function request(path, options = {}) {
   }
 
   const responseText = await response.text();
-  const data = responseText ? JSON.parse(responseText) : {};
+  let data = {};
+
+  if (responseText) {
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      data = { message: responseText };
+    }
+  }
 
   if (!response.ok) {
-    throw new Error(data.message || "Request failed");
+    throw new Error(data.message || `Request failed (${response.status})`);
   }
 
   return data;
