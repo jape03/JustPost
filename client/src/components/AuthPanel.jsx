@@ -28,11 +28,7 @@ export function AuthPanel({ onSubmit, error, isLoading }) {
     <main className="auth-shell">
       <section className="auth-copy">
         <Brand />
-        <h1>Publish quiet, polished posts from one focused workspace.</h1>
-        <p>
-          JustPost keeps writing, editing, and account access direct with a clean
-          database-backed login flow.
-        </p>
+        <h1>Share what matters.</h1>
       </section>
 
       <section className="auth-card" aria-label="Account access">
